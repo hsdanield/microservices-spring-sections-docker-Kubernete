@@ -17,6 +17,6 @@ public class AccountsServiceConfig {
     private String msg;
     private String buildVersion;
     private Map<String, String> mailDetails;
-    private List<String> activateBranches;
+    private List<String> activeBranches;
 
 }
