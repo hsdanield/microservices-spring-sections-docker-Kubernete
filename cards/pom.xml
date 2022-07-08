@@ -71,7 +71,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<image>
-						<name>e/${project.artifactId}</name>
+						<name>microservice/${project.artifactId}</name>
 					</image>
 					<excludes>
 						<exclude>
