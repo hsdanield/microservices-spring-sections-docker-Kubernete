@@ -16,10 +16,10 @@ public class Cards {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "card_id")
-    private int cardId;
+    private Long cardId;
 
     @Column(name = "customer_id")
-    private int customerId;
+    private Long customerId;
 
     @Column(name = "card_number")
     private String cardNumber;
@@ -28,13 +28,13 @@ public class Cards {
     private String cardType;
 
     @Column(name = "total_limit")
-    private int totalLimit;
+    private Long totalLimit;
 
     @Column(name = "amount_used")
-    private int amountUsed;
+    private Long amountUsed;
 
     @Column(name = "available_amount")
-    private int availableAmount;
+    private Long availableAmount;
 
     @Column(name = "create_dt")
     private LocalDate createDt;

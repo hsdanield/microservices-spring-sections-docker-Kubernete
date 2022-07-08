@@ -17,6 +17,7 @@ public class RequestContextInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
+        System.out.println("Testing RequestContextInterceptor");
         HttpHeaders headers = request.getHeaders();
         headers.add(RequestContext.CORREELATION_ID, RequestContextHolder.getContext().getCorrelationId());
 

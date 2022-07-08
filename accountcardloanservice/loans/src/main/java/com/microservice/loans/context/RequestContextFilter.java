@@ -15,6 +15,8 @@ public class RequestContextFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
 
+        System.out.println("testando...");
+
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
 
         RequestContextHolder.getContext().setCorrelationId(httpServletRequest.getHeader(RequestContext.CORREELATION_ID));
@@ -22,5 +24,15 @@ public class RequestContextFilter implements Filter {
         logger.debug("Loans Service incoming Correlation id: {}", RequestContextHolder.getContext().getCorrelationId());
         filterChain.doFilter(httpServletRequest, servletResponse);
     }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        Filter.super.init(filterConfig);
+    }
+
+    @Override
+    public void destroy() {
+    }
+
 
 }
