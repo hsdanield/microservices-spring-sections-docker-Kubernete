@@ -35,7 +35,7 @@ public class AccountsController {
                 .msg(accountsServiceConfig.getMsg())
                 .buildVersion(accountsServiceConfig.getBuildVersion())
                 .mailDetails(accountsServiceConfig.getMailDetails())
-                .activeBranches(accountsServiceConfig.getActivateBranches())
+                .activeBranches(accountsServiceConfig.getActiveBranches())
                 .build();
         return ow.writeValueAsString(properties);
     }
