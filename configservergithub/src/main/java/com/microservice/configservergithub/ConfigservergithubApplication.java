@@ -1,0 +1,15 @@
+package com.microservice.configservergithub;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.config.server.EnableConfigServer;
+
+@SpringBootApplication
+@EnableConfigServer
+public class ConfigservergithubApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ConfigservergithubApplication.class, args);
+	}
+
+}
