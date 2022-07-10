@@ -8,10 +8,10 @@
 		<version>2.7.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.microservice.configservergithub</groupId>
-	<artifactId>configservergithub</artifactId>
+	<groupId>com.microservice.configservergit</groupId>
+	<artifactId>configservergit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>configservergithub</name>
+	<name>configservergit</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

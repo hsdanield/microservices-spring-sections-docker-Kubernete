@@ -1,4 +1,4 @@
-package com.microservice.configservergithub;
+package com.microservice.configservergit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
