@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
 
-  configservergit:
+  configserver:
     image: microservice/configservergit:latest
     mem_limit: 700m
     ports:
@@ -38,6 +38,7 @@ services:
       - microservice-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
@@ -58,6 +59,7 @@ services:
       - microservice-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
@@ -78,6 +80,7 @@ services:
       - microservice-network
     depends_on:
       - configserver
+      - eurekaserver
     deploy:
       restart_policy:
         condition: on-failure
