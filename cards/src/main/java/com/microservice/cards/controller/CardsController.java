@@ -9,10 +9,7 @@ import com.microservice.cards.model.Customer;
 import com.microservice.cards.model.Properties;
 import com.microservice.cards.repository.CardsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,11 @@ public class CardsController {
 
     @PostMapping("/myCards")
     public List<Cards> getCardDetails(@RequestBody Customer customer) {
+        return cardsRepository.findByCustomerId(customer.getCustomerId());
+    }
+
+    @PostMapping("/myCardsHeader")
+    public List<Cards> getCardDetails(@RequestHeader("eazybank-correlation-id") String correlationid, @RequestBody Customer customer) {
         return cardsRepository.findByCustomerId(customer.getCustomerId());
     }
 

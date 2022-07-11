@@ -9,10 +9,7 @@ import com.microservice.loans.model.Loans;
 import com.microservice.loans.model.Properties;
 import com.microservice.loans.repository.LoansRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,12 @@ public class LoansController {
 
     @PostMapping("/myLoans")
     public List<Loans> getLoansDetails(@RequestBody Customer customer) {
+        System.out.println("Invoking Loans Microservice");
+        return loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
+    }
+
+    @PostMapping("/myLoansHeader")
+    public List<Loans> myLoansHeader(@RequestHeader("eazybank-correlation-id") String correlationid, @RequestBody Customer customer) {
         System.out.println("Invoking Loans Microservice");
         return loansRepository.findByCustomerIdOrderByStartDtDesc(customer.getCustomerId());
     }
