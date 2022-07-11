@@ -9,6 +9,7 @@ import com.microservice.accounts.repository.AccountsRepository;
 import com.microservice.accounts.service.CardsFeignClient;
 import com.microservice.accounts.service.LoansFeignClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -48,9 +49,7 @@ public class AccountsController {
                 .build();
         return ow.writeValueAsString(properties);
     }
-
     @PostMapping("myCustomerDetails")
-    @CircuitBreaker(name = "detailsForCustomerSupportApp")
     public CustomerDetails myCustomerDetails(@RequestBody Customer customer) {
         Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
         List<Loans> loans = loansFeignClient.getLoansDetails(customer);
@@ -59,6 +58,39 @@ public class AccountsController {
                 .accounts(accounts)
                 .loans(loans)
                 .cards(cards)
+                .build();
+    }
+    @PostMapping("circuitBreakDetailsForCustomer")
+    @CircuitBreaker(name = "detailsForCustomerSupportApp", fallbackMethod = "myCustomerDetailsFallBack")
+    public CustomerDetails myCustomerDetailsCircuitBreak(@RequestBody Customer customer) {
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
+        List<Loans> loans = loansFeignClient.getLoansDetails(customer);
+        List<Cards> cards = cardsFeignClient.getCardsDetails(customer);
+        return CustomerDetails.builder()
+                .accounts(accounts)
+                .loans(loans)
+                .cards(cards)
+                .build();
+    }
+
+    @PostMapping("retryForCustomerDetails")
+    @Retry(name = "retryForCustomerDetails", fallbackMethod = "myCustomerDetailsFallBack")
+    public CustomerDetails myCustomerDetailsRetry(@RequestBody Customer customer) {
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
+        List<Loans> loans = loansFeignClient.getLoansDetails(customer);
+        List<Cards> cards = cardsFeignClient.getCardsDetails(customer);
+        return CustomerDetails.builder()
+                .accounts(accounts)
+                .loans(loans)
+                .cards(cards)
+                .build();
+    }
+    private CustomerDetails myCustomerDetailsFallBack(Customer customer, Throwable t) {
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
+        List<Loans> loans = loansFeignClient.getLoansDetails(customer);
+        return CustomerDetails.builder()
+                .accounts(accounts)
+                .loans(loans)
                 .build();
     }
 
