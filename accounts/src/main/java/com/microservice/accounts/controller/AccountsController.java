@@ -9,6 +9,7 @@ import com.microservice.accounts.repository.AccountsRepository;
 import com.microservice.accounts.service.CardsFeignClient;
 import com.microservice.accounts.service.LoansFeignClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,6 +93,16 @@ public class AccountsController {
                 .accounts(accounts)
                 .loans(loans)
                 .build();
+    }
+
+    @GetMapping("sayHello")
+    @RateLimiter(name = "sayHello", fallbackMethod = "sayHelloFallback")
+    public String sayHello() {
+        return "Hello, welcome to microservice";
+    }
+    
+    private String sayHelloFallback(Throwable t) {
+        return "Hi, welcome to microservice fallback";
     }
 
 }
