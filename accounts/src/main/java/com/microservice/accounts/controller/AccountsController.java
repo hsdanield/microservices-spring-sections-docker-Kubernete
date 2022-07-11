@@ -75,8 +75,6 @@ public class AccountsController {
     @CircuitBreaker(name = "circuitBreakGatewayHeaderCustomer", fallbackMethod = "retryAndCircuitBreakGatewayHeaderCustomerFallBack")
     @Retry(name = "retryForCustomerGatewayHeader", fallbackMethod = "retryAndCircuitBreakGatewayHeaderCustomerFallBack")
     public CustomerDetails retryAndcircuitBreakDetailsForCustomer(@RequestHeader("eazybank-correlation-id") String correlationid, @RequestBody Customer customer) {
-        System.out.println(correlationid);
-        System.out.println(customer);
         Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId());
         List<Loans> loans = loansFeignClient.getLoansDetailsHeader(correlationid, customer);
         List<Cards> cards = cardsFeignClient.getCardsDetailsHeader(correlationid, customer);
