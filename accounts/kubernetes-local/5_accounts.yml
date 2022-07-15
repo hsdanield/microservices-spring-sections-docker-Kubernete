@@ -17,6 +17,7 @@ spec:
       containers:
       - name: accounts
         image: microservice/accounts:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
         env:

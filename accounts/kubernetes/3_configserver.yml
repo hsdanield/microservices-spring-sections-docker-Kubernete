@@ -16,19 +16,19 @@ spec:
     spec:
       containers:
       - name: configserver
-        image: eazybytes/configserver:latest
+        image: microservice/configservergit:latest
         ports:
         - containerPort: 8071
         env:
         - name: SPRING_ZIPKIN_BASEURL
           valueFrom: 
             configMapKeyRef:
-              name: eazybank-configmap
+              name: microservice-configmap
               key: SPRING_ZIPKIN_BASEURL
         - name: SPRING_PROFILES_ACTIVE
           valueFrom: 
             configMapKeyRef:
-              name: eazybank-configmap
+              name: microservice-configmap
               key: SPRING_PROFILES_ACTIVE
 ---
 apiVersion: v1
