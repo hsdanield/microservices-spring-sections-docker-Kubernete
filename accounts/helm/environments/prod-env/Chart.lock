@@ -1,0 +1,27 @@
+dependencies:
+- name: microservice-commom
+  repository: file://../../microservice-commom
+  version: 0.1.0
+- name: zipkin
+  repository: file://../../microservice-services/zipkin
+  version: 0.1.0
+- name: configserver
+  repository: file://../../microservice-services/configserver
+  version: 0.1.0
+- name: eurekaserver
+  repository: file://../../microservice-services/eurekaserver
+  version: 0.1.0
+- name: accounts
+  repository: file://../../microservice-services/accounts
+  version: 0.1.0
+- name: cards
+  repository: file://../../microservice-services/cards
+  version: 0.1.0
+- name: loans
+  repository: file://../../microservice-services/loans
+  version: 0.1.0
+- name: gatewayserver
+  repository: file://../../microservice-services/gatewayserver
+  version: 0.1.0
+digest: sha256:c39b6bf71dbe86be3ab7af0c6aac4eee877986e7aad37b58f6d43efc46558ca4
+generated: "2022-07-17T16:50:51.599542-03:00"
