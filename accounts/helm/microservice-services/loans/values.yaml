@@ -4,7 +4,7 @@
 deploymentName: loans-deployment
 deploymentLabel: loans
 
-replicaCount: 2
+replicaCount: 1
 
 image:
   repository: microservice/loans
@@ -13,7 +13,7 @@ image:
 containerPort: 8090
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 8090
   targetPort: 8090
 

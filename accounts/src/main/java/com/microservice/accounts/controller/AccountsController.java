@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AccountsController {
@@ -128,7 +129,8 @@ public class AccountsController {
     @GetMapping("sayHello")
     @RateLimiter(name = "sayHello", fallbackMethod = "sayHelloFallback")
     public String sayHello() {
-        return "Hello, welcome to microservice";
+        Optional<String> podName = Optional.ofNullable(System.getenv("HOSTNAME"));
+        return "Hello, Welcome to Microservice Kubernetes cluster from: " + podName.get();
     }
 
     private String sayHelloFallback(Throwable t) {
