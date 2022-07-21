@@ -1,0 +1,14 @@
+global:
+  configMapName: microservice-configmap
+  zipkinBaseURL: http://zipkin:9411/
+  activeProfile: dev
+  configServerURL: configserver:http://configserver:8071/
+  eurekaServerURL: http://eurekaserver:8070/eureka/
+  imagePullPolicyCustom: Never
+  keyCloakURL: http://keycloak:80/realms/master/protocol/openid-connect/certs
+  tokenuri: http://keycloak:80/realms/master/protocol/openid-connect/token
+  authorizationuri: http://keycloak:80/realms/master/protocol/openid-connect/auth
+  userinfouri: http://keycloak:80/realms/master/protocol/openid-connect/userinfo
+  secretName: microservicedev-secret
+  keycloakclientid: microservice-gateway-ui
+  keycloakclientsecret: fta4Fnrd0DHD1g8Zdn7MllDlO7olpgZJ

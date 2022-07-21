@@ -1,9 +1,4 @@
-package com.microservice.gatewayserver.config;
-
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
+package com.microservice.accounts.config;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class KeycloackRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.jwt.Jwt;
+public class KeycloakRoleConverter implements Converter<Jwt, Collection<GrantedAuthority>>{
 
     @Override
     public Collection<GrantedAuthority> convert(Jwt jwt) {
@@ -23,9 +22,6 @@ public class KeycloackRoleConverter implements Converter<Jwt, Collection<Granted
                 .stream().map(roleName -> "ROLE_" + roleName)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-        for (GrantedAuthority g : returnValue) {
-            System.out.println(g);
-        }
         return returnValue;
     }
 
